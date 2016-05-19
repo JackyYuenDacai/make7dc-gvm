@@ -1,0 +1,225 @@
+void init_sr(){
+	srand(GetSecond()+255*Getms());
+	rand();
+}
+int score(){
+	return 0;
+}
+int about(){
+	ClearScreen();
+	ShowImage(IDL4,0,0,320,240,0,0,1,1);
+	getchar();
+	return 0;
+}
+int play(){
+	int score;	int i,e;
+	int xda[19],yda[19];
+	int ued[19][6];
+	int nstore[19];
+	int cursor;
+	int tmp;
+	int blink;
+	int list[2];int list_count;
+	int opuc;
+	char c;
+	cursor=10;blink=0;
+	opuc=0;
+	ued[0][0]=2;ued[0][1]=5;ued[0][2]=4;ued[0][3]=0;ued[0][4]=0;ued[0][5]=0;//
+	ued[1][0]=3;ued[1][1]=6;ued[1][2]=5;ued[1][3]=1;ued[1][4]=0;ued[1][5]=0;//
+	ued[2][0]=0;ued[2][1]=7;ued[2][2]=6;ued[2][3]=2;ued[2][4]=0;ued[2][5]=0;//
+	ued[3][0]=5;ued[3][1]=9;ued[3][2]=8;ued[3][3]=0;ued[3][4]=0;ued[3][5]=1;//
+	ued[4][0]=6;ued[4][1]=10;ued[4][2]=9;ued[4][3]=4;ued[4][4]=1;ued[4][5]=2;//
+	ued[5][0]=7;ued[5][1]=11;ued[5][2]=10;ued[5][3]=5;ued[5][4]=2;ued[5][5]=3;//
+	ued[6][0]=0;ued[6][1]=12;ued[6][2]=11;ued[6][3]=6;ued[6][4]=3;ued[6][5]=0;//
+	ued[7][0]=9;ued[7][1]=13;ued[7][2]=4;ued[7][3]=0;ued[7][4]=0;ued[7][5]=4;//
+	ued[8][0]=10;ued[8][1]=14;ued[8][2]=13;ued[8][3]=8;ued[8][4]=4;ued[8][5]=5;//
+	ued[9][0]=11;ued[9][1]=15;ued[9][2]=14;ued[9][3]=9;ued[9][4]=5;ued[9][5]=6;//
+	ued[10][0]=12;ued[10][1]=16;ued[10][2]=15;ued[10][3]=10;ued[10][4]=6;ued[10][5]=7;//
+	ued[11][0]=0;ued[11][1]=0;ued[11][2]=16;ued[11][3]=11;ued[11][4]=7;ued[11][5]=0;//
+	ued[12][0]=14;ued[12][1]=17;ued[12][2]=0;ued[12][3]=0;ued[12][4]=8;ued[12][5]=9;//
+	ued[13][0]=15;ued[13][1]=18;ued[13][2]=17;ued[13][3]=13;ued[13][4]=9;ued[13][5]=10;//
+	ued[14][0]=16;ued[14][1]=19;ued[14][2]=18;ued[14][3]=14;ued[14][4]=10;ued[14][5]=11;//
+	ued[15][0]=0;ued[15][1]=0;ued[15][2]=19;ued[15][3]=15;ued[15][4]=11;ued[15][5]=12;//
+	ued[16][0]=18;ued[16][1]=0;ued[16][2]=0;ued[16][3]=0;ued[16][4]=13;ued[16][5]=14;//
+	ued[17][0]=19;ued[17][1]=0;ued[17][2]=0;ued[17][3]=17;ued[17][4]=14;ued[17][5]=15;//
+	ued[18][0]=0;ued[18][1]=0;ued[18][2]=0;ued[18][3]=18;ued[18][4]=15;ued[18][5]=16;//
+	ClearScreen();
+	init_sr();
+	
+	score=0;
+	if(rand()%2==0)
+		list_count=2;
+	else 
+		list_count=1;
+	for(i=0;i<list_count;i++){
+			tmp=1+rand()%680;
+			if(tmp<200)list[i]=1;//200
+			else if(tmp<360)list[i]=2;//160
+			else if(tmp<480)list[i]=3;//120
+			else if(tmp<580)list[i]=4;//100
+			else if(tmp<640)list[i]=5;//60
+			else if(tmp<670)list[i]=6;//30
+			else list[i]=7;
+	}
+	a:
+	ClearScreen();
+	if(opuc>=19){			
+		SetFgColor(0);
+		for(i=0;i<rand()%20;i++){
+			Delay(rand()%500+500);
+			SetFgColor(0);
+			TextOut(rand()%320,rand()%240,"Game Over");
+		
+		}
+		SetFgColor(-1);
+		return score;
+	}
+	for(i=0;i<3;i++){
+		ShowImage(IDL2,82+i*50,0+6,56,56,0,0,1,-1);
+		xda[i]=82+i*50;
+		yda[i]=0+6;
+	}
+	
+	for(i=0;i<4;i++){
+		ShowImage(IDL2,57+i*50,42+6,56,56,0,0,1,-1);
+		xda[i+3]=57+i*50;
+		yda[i+3]=42+6;
+	}
+	
+	for(i=0;i<5;i++){
+		ShowImage(IDL2,32+i*50,84+6,56,56,0,0,1,-1);
+		xda[i+7]=32+i*50;
+		yda[i+7]=84+6;
+	}
+	
+	for(i=0;i<4;i++){
+		ShowImage(IDL2,57+i*50,126+6,56,56,0,0,1,-1);
+		xda[i+12]=57+i*50;
+		yda[i+12]=126+6;
+	}
+	
+	for(i=0;i<3;i++){
+		ShowImage(IDL2,82+i*50,168+6,56,56,0,0,1,-1);
+		xda[i+16]=82+i*50;
+		yda[i+16]=168+6;
+	}
+	
+	ShowImage(IDL3,xda[cursor-1],yda[cursor-1],56,56,0,0,1,-1);
+	SetFgColor(-1);
+	Rectangle(0,0,30,50,1);
+	for(i=0;i<19;i++){
+		if(nstore[i]!=0){
+			SetFgColor(0);
+			DigitOut(xda[i]+24,yda[i]+19,nstore[i]);
+			SetFgColor(-1);
+		}
+	}
+	
+	for(i=0;i<list_count;i++){
+		SetFgColor(0);
+		DigitOut(10,20*i,list[i]);
+		SetFgColor(-1);
+	}
+	SetFgColor(0);
+	TextOut(10,195,"Score:");
+	DigitOut(10,212,score);
+	SetFgColor(1);
+	
+	c=getchar();
+	//c=CheckKey(128);
+	if(c==KEY_UP){
+		if(xda[cursor-1]>150 && ued[cursor-1][4]!=0){
+			cursor=ued[cursor-1][4];
+		}else if(xda[cursor-1]<=150 && ued[cursor-1][5]!=0){
+			cursor=ued[cursor-1][5];
+		}
+	}
+	else if(c==KEY_DOWN){
+		if(xda[cursor-1]>150 && ued[cursor-1][2]!=0){
+			cursor=ued[cursor-1][2];
+		}else if(xda[cursor-1]<=150 && ued[cursor-1][1]!=0){
+			cursor=ued[cursor-1][1];
+		}
+	}
+	else if(c==KEY_LEFT){
+		if(ued[cursor-1][3]!=0)
+			cursor=ued[cursor-1][3];
+	}
+	else if(c==KEY_RIGHT){
+		if(ued[cursor-1][0]!=0)
+			cursor=ued[cursor-1][0];
+	}
+	else if(c==KEY_ENTER){
+		blink=0;
+		if(nstore[cursor-1]==0){
+			nstore[cursor-1]=list[list_count-1];opuc++;
+			list_count--;
+			for(i=0;i<6;i++){
+				if(ued[cursor-1][i]!=0 && 
+						nstore[ued[cursor-1][i]-1]==nstore[cursor-1] &&
+						ued[cursor-1][i]!=cursor){
+					for(e=0;e<6;e++){
+						if(ued[ued[cursor-1][i]-1][e]!=0 && 
+								nstore[ued[ued[cursor-1][i]-1][e]-1]==nstore[cursor-1] &&
+							ued[ued[cursor-1][i]-1][e]!=ued[cursor-1][i] &&
+							ued[ued[cursor-1][i]-1][e]!=cursor	){
+							blink=1;
+							score=score+nstore[ued[ued[cursor-1][i]-1][e]-1];
+							nstore[ued[ued[cursor-1][i]-1][e]-1]=0;opuc--;
+							
+						}
+					}
+					if(blink==1){
+						score=score+nstore[ued[cursor-1][i]-1];
+						nstore[ued[cursor-1][i]-1]=0;opuc--;
+					}
+				}
+			}
+			if(blink==1){
+				nstore[cursor-1]++;
+			}
+		}
+		if(list_count==0){
+			if(rand()%2==0)
+			list_count=2;
+			else 
+			list_count=1;
+			for(i=0;i<list_count;i++){
+				tmp=1+rand()%680;
+				if(tmp<200)list[i]=1;//200
+				else if(tmp<360)list[i]=2;//160
+				else if(tmp<480)list[i]=3;//120
+				else if(tmp<580)list[i]=4;//100
+				else if(tmp<640)list[i]=5;//60
+				else if(tmp<670)list[i]=6;//30
+				else list[i]=7;//10
+				}
+		}
+	}
+	goto a;
+	return score;
+}
+void main(){
+	char c;
+	int pter;
+	pter=1;
+	SetFgColor(-1);
+	for(;;){
+		ShowImage(IDL0,0,0,320,240,0,0,1,1);
+		Rectangle(82,160,118,218,1);
+		ShowImage(IDL1,86,24*(pter)+128,32,32,0,0,1,1);
+		c=getchar();
+		//c=CheckKey(128);
+		if(c==KEY_DOWN && pter<=2){
+				pter=pter+1;
+		}
+		else if(c==KEY_UP && pter>1){
+				pter=pter-1;
+		}
+		else if(c==KEY_ENTER){
+			if(pter==1)play();
+			if(pter==2)score();
+			if(pter==3)about();
+		}
+	}
+}
